@@ -24,7 +24,8 @@ export const randomString = (length) => {
 };
 
 Cypress.Commands.add('generateRandomEmail', () => {
-    return randomString(8) + '.' + randomString(8) + '@' + randomString(5) + '.com';
+    return randomString(64) + '@' + randomString(63) + '.com';
+
 });
 
 Cypress.Commands.add('validateCorrectScreenIsOpen', (string) => {
@@ -32,7 +33,9 @@ Cypress.Commands.add('validateCorrectScreenIsOpen', (string) => {
         cy.url().should('contain', string);
       });
 
-});Cypress.Commands.overwrite('visit', (visit, url) => {
+}); 
+
+Cypress.Commands.overwrite('visit', (visit, url) => {
         return visit(url, {
           
           onBeforeLoad: (_contentWindow) => { 
